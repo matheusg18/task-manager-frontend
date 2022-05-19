@@ -14,5 +14,13 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {}
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["src/pages/*.tsx"],
+      "rules": {
+        "react/function-component-definition": "off"
+      }
+    }
+  ]
 }
