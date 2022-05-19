@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <VStack>
-        <Heading as={'h1'} size={'2xl'}>
+        <Heading as="h1" size="2xl">
           Ebtyr Task Manager
         </Heading>
         <AddTask />
