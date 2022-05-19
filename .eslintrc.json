@@ -16,7 +16,16 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
   "overrides": [
     {
