@@ -1,0 +1,19 @@
+import { TASK_STATUS } from '../../constants';
+
+export interface ITask {
+  id: string;
+  content: string;
+  status: TASK_STATUS;
+  createdAt: Date;
+}
+
+export interface ITaskCreateRequest {
+  content: string;
+}
+
+export interface ITaskCreateResponse {
+  id: string;
+  content: string;
+  status: TASK_STATUS;
+  createdAt: string;
+}
