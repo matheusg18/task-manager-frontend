@@ -1,7 +1,17 @@
+import React from 'react';
 import type { NextPage } from 'next';
+import { Heading, VStack } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
-  return <h1>Ebtyr task manager</h1>;
+  return (
+    <main>
+      <VStack>
+        <Heading as={'h1'} size={'2xl'}>
+          Ebtyr Task Manager
+        </Heading>
+      </VStack>
+    </main>
+  );
 };
 
 export default Home;
