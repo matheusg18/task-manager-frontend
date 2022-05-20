@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import { Heading, VStack } from '@chakra-ui/react';
+import { Heading, OrderedList, VStack } from '@chakra-ui/react';
 import AddTask from '../components/AddTask';
 import { ITask } from '../interfaces/api/task';
+import Task from '../components/Task';
+import * as api from '../api';
 
 const Home: NextPage = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
+
+  useEffect(() => {
+    api.getAllTasks().then((allTasks) => setTaskList(allTasks));
+  }, []);
 
   const addTask = (newTask: ITask) => {
     setTaskList((prev) => [...prev, newTask]);
@@ -18,6 +24,11 @@ const Home: NextPage = () => {
           Ebtyr Task Manager
         </Heading>
         <AddTask addTask={addTask} />
+        <OrderedList styleType="none">
+          {taskList.map((task) => (
+            <Task key={task.id} {...task} />
+          ))}
+        </OrderedList>
       </VStack>
     </main>
   );
