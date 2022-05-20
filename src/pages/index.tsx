@@ -24,7 +24,7 @@ const Home: NextPage = () => {
           Ebtyr Task Manager
         </Heading>
         <AddTask addTask={addTask} />
-        <OrderedList styleType="none">
+        <OrderedList styleType="none" w="100%" maxW="50vw">
           {taskList.map((task) => (
             <Task key={task.id} {...task} />
           ))}
