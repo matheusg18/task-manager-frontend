@@ -1,12 +1,21 @@
-import { Box, HStack, ListItem, Select, Tag, Text } from '@chakra-ui/react';
 import React from 'react';
+import { Box, HStack, IconButton, ListItem, Select, Tag, Text } from '@chakra-ui/react';
+import { FaTrash } from 'react-icons/fa';
 import { TASK_STATUS } from '../constants';
 import { ITask } from '../interfaces/api/task';
+import * as api from '../api';
 import * as utils from '../utils';
 
-interface PropTypes extends ITask {}
+interface PropTypes extends ITask {
+  removeTask: (taskToRemove: ITask) => void;
+}
 
-function Task({ content, createdAt }: PropTypes) {
+function Task({ id, content, createdAt, status, removeTask }: PropTypes) {
+  const handleDelete = async () => {
+    await api.deleteTask(id);
+    removeTask({ id, content, createdAt, status });
+  };
+
   return (
     <ListItem>
       <HStack justifyContent="space-between">
@@ -18,6 +27,12 @@ function Task({ content, createdAt }: PropTypes) {
           <option value={TASK_STATUS.DONE}>Pronto</option>
         </Select>
         <Tag>{utils.formatDate(createdAt)}</Tag>
+        <IconButton
+          aria-label={`Excluir a task: ${content}`}
+          variant="ghost"
+          icon={<FaTrash />}
+          onClick={handleDelete}
+        />
       </HStack>
     </ListItem>
   );

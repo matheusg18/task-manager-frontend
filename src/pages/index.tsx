@@ -17,6 +17,10 @@ const Home: NextPage = () => {
     setTaskList((prev) => [...prev, newTask]);
   };
 
+  const removeTask = (taskToRemove: ITask) => {
+    setTaskList((prev) => prev.filter(({ id }) => id !== taskToRemove.id));
+  };
+
   return (
     <main>
       <VStack>
@@ -26,7 +30,7 @@ const Home: NextPage = () => {
         <AddTask addTask={addTask} />
         <OrderedList styleType="none" w="100%" maxW="50vw">
           {taskList.map((task) => (
-            <Task key={task.id} {...task} />
+            <Task key={task.id} removeTask={removeTask} {...task} />
           ))}
         </OrderedList>
       </VStack>
