@@ -1,11 +1,11 @@
 import { AxiosResponse } from 'axios';
-import { ITask, ITaskCreateRequest, ITaskCreateResponse } from '../interfaces/api/task';
+import { ITask, ITaskCreateRequest, ITaskApiResponse } from '../interfaces/api/task';
 import { myAxios } from '../utils';
 
 const createNewTask = async (newTaskContent: string): Promise<ITask> => {
   const newTask = await myAxios.post<
-    ITaskCreateResponse,
-    AxiosResponse<ITaskCreateResponse>,
+    ITaskApiResponse,
+    AxiosResponse<ITaskApiResponse>,
     ITaskCreateRequest
   >('/task', { content: newTaskContent });
   const { content, createdAt, id, status } = newTask.data;

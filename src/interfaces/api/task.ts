@@ -11,7 +11,7 @@ export interface ITaskCreateRequest {
   content: string;
 }
 
-export interface ITaskCreateResponse {
+export interface ITaskApiResponse {
   id: string;
   content: string;
   status: TASK_STATUS;
