@@ -1,11 +1,25 @@
 import { Button, HStack, Input } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
+import * as api from '../api';
+import { ITask } from '../interfaces/api/task';
 
-function AddTask() {
+interface PropTypes {
+  addTask: (newTask: ITask) => void;
+}
+
+function AddTask({ addTask }: PropTypes) {
   const [content, setContent] = useState('');
 
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const newTask = await api.createNewTask(content);
+    addTask(newTask);
+    setContent('');
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <HStack>
         <Input
           placeholder="Fazer um café"
