@@ -17,3 +17,8 @@ export interface ITaskApiResponse {
   status: TASK_STATUS;
   createdAt: string;
 }
+
+export interface ITaskUpdateRequest {
+  content?: string;
+  status?: TASK_STATUS;
+}
